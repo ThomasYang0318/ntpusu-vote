@@ -1,5 +1,8 @@
 <!-- https://drive.google.com/file/d/1vooeYRpqUp4fQ5w2iMZSNIuL47kORAfe/preview -->
 <template>
+  <div class="custom-style">
+        <el-segmented v-model="value" :options="options" />
+  </div>
   <div class="flex flex-wrap items-stretch justify-evenly">
     <div class="flex h-auto w-5/6 flex-col justify-center md:w-2/3 lg:w-1/2">
       <h1 class="my-5 text-center text-2xl font-bold">選舉公報</h1>
@@ -294,10 +297,16 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+
 definePageMeta({
   auth: false,
   title: "選舉資訊",
 });
+
+const value = ref('選舉公報')
+
+const options = ['選舉公報', '投票系統操作說明']
 
 const load = () => {
   setTimeout(() => {
@@ -314,3 +323,11 @@ onActivated(() => {
   load();
 });
 </script>
+
+<style scoped>
+.custom-style .el-segmented {
+  --el-segmented-item-selected-color: var(--el-text-color-primary);
+  --el-segmented-item-selected-bg-color: #ffd100;
+  --el-border-radius-base: 16px;
+}
+</style>
